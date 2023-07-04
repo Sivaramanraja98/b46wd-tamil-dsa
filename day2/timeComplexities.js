@@ -167,6 +167,11 @@
 
         total executions = 5 + 4 + 3 + 2 + 1
                          = 15
+
+
+    N = 4, executions = 10
+    N = 5, executions = 15
+    N = 6, executions = 21
     
     total executions = sum of first n natural numbers
                      = (n * (n + 1))/2
