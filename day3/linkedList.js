@@ -105,7 +105,16 @@ class LinkedList {
     }
 
     unshift(data) {
-        
+        let newNode = new Node(data);
+
+        if (this.head == null) {
+            // the list is empty
+            this.head = newNode;
+        } else {
+            newNode.next = this.head;
+
+            this.head = newNode;
+        }
     }
 
     push(data) {
@@ -127,11 +136,27 @@ class LinkedList {
     }
 
     pop() {
-        
+        // if the list is not empty
+        if (this.head != null) {
+            if (this.head.next == null) {
+                // the list has only one node
+                this.head = null;
+            } else {
+                // the list has more than one node
+                let thead = this.head;
+                while (thead.next.next != null) {
+                    thead = thead.next;
+                }
+                // thead.next.next = null
+                thead.next = null;
+            }
+        }
     }
 
     shift() {
-        
+        if (this.head != null) {
+            this.head = this.head.next;
+        }
     }
 
     parse() {
@@ -145,7 +170,13 @@ class LinkedList {
     }
 
     length() {
-        
+        let nodes = 0;
+        let thead = this.head;
+        while (thead != null) {
+            nodes++;
+            thead = thead.next;
+        }
+        return nodes;
     }
 }
 
@@ -155,7 +186,16 @@ list.push(4);
 list.push(5);
 list.push(6);
 console.log(list.parse());
-
+list.pop();
+console.log(list.parse());
+list.unshift(2);
+list.unshift(1);
+list.unshift(10);
+console.log(list.parse());
+list.shift();
+// list.shift();
+console.log(list.parse());
+console.log(list.length());
 /*
     list = LinkedList {
         head: Node {
@@ -183,4 +223,28 @@ console.log(list.parse());
             next: null
         }
     }
+*/
+
+/*
+    list = LinkedList {
+        head: Node {
+            data: 3,
+            next: Node {
+                data: 4,
+                next: Node {
+                    data: 5,
+                    next: null
+                }
+            }
+        }
+    }
+
+    bc => thead.next.next = null
+    rc => thead.next.next != null
+
+    thead = Node {
+        data: 5,
+        next: null
+    }
+
 */
